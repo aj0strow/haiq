@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "name": "hiq",
+  "dependencies": {
+    "requirejs": "~2.1.11"
+  }
+}
