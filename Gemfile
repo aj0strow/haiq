@@ -10,6 +10,7 @@ gem 'require_all'
 gem 'sequel'
 gem 'pg'
 gem 'rake'
+gem 'omniauth-twitter'
 
 group :test do
   gem 'rspec'

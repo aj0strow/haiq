@@ -2,10 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HiQ</title>
+    <title>HaiQ</title>
     <script src="/assets/application.js"></script>
   </head>
   <body>
-    HiQ
+    <h1>HaiQ</h1>
+    {{# current_user }}
+    {{ current_user.name }}
+    <p><a href="/logout">Sign Out</a></p>
+    {{/ current_user }}
+    {{^ current_user }}
+    <p><a href="/auth/twitter">Sign In with Twitter</a></p>
+    {{/ current_user }}
   </body>
 </html>

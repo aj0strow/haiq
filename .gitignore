@@ -10,3 +10,6 @@
 # Bundler
 .bundle
 /bin
+
+# Environment
+env.sh

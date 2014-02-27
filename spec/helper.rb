@@ -1,6 +1,8 @@
 require_relative '../app'
 require 'rack/test'
 
+OmniAuth.config.test_mode = true
+
 module Helpers
   def app
     Sinatra::Application
