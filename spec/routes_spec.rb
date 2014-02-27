@@ -6,4 +6,10 @@ describe Sinatra::Application do
       expect(last_response).to be_successful
     end
   end
+
+  describe 'GET /assets/appliction.js' do
+    before { get '/assets/application.js' }
+    subject { last_response }
+    it { should be_successful }
+  end
 end

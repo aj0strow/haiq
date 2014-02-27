@@ -3,3 +3,10 @@
 
 # Bower
 /app/components
+
+# Logs
+/log
+
+# Bundler
+.bundle
+/bin

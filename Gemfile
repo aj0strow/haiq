@@ -6,7 +6,10 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-assetpack'
 gem 'sinatra-mustache'
+gem 'require_all'
 gem 'sequel'
+gem 'pg'
+gem 'rake'
 
 group :test do
   gem 'rspec'
