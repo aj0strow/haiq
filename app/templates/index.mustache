@@ -2,17 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HaiQ</title>
+    <script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
     <script src="/assets/application.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/global.css">
   </head>
   <body>
-    <h1>HaiQ</h1>
-    {{# current_user }}
-    {{ current_user.name }}
-    <p><a href="/logout">Sign Out</a></p>
-    {{/ current_user }}
-    {{^ current_user }}
-    <p><a href="/auth/twitter">Sign In with Twitter</a></p>
-    {{/ current_user }}
+    <header class="header">
+      <div class="brand">HaiQ</div>
+      <ul id="menu" class="inline-links">
+        {{# current_user }}
+          <li><a id="recent" href="#">Recent</a></li>
+          <li><a id="me" href="#">Me</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{/ current_user }}
+        {{^ current_user }}
+          <li><a href="/auth/twitter">Login with Twitter</a></li>
+        {{/ current_user }}          
+      </ul>
+    </header>
+    <section id="content" role="main"></section>
+    <script name="haiku" type="x-mustache">
+      <div class="haiku">
+        <h3>{{ user.name }}</h3>
+        <p class="first">{{ first }}</p>
+        <p class="second">{{ second }}</p>
+        <p class="third">{{ third }}</p>
+      </div>
+    </script>
   </body>
 </html>

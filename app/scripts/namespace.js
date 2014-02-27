@@ -1,0 +1,2 @@
+window.haiq = {};
+window.JST = {};
