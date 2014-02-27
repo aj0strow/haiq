@@ -11,8 +11,14 @@ gem 'sequel'
 gem 'pg'
 gem 'rake'
 gem 'omniauth-twitter'
+gem 'redis'
+gem 'hiredis'
+gem 'curb'
+gem 'nokogiri'
 
 group :test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'fabrication'
+  gem 'database_cleaner'
 end
