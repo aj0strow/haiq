@@ -1,6 +1,7 @@
 require 'redis'
 require 'curb'
 require 'nokogiri'
+require 'active_support/core_ext'
 
 class Word < String
   def self.redis
@@ -11,15 +12,24 @@ class Word < String
     self.class.redis
   end
 
+  def redis_key
+    to_s
+  end
+
+  def redis_get
+    redis.get(redis_key).presence.try(:to_i)
+  end
+
+  def redis_set(value)
+    redis.set(redis_key, value)
+    redis.expire(redis_key, 60 * 60 * 24) if value <= 0
+    value
+  end
+
   def syllables
-    amount = redis.get(to_s)
-    if amount == ''
-      amount = scrape_syllables_count
-      redis.set(to_s, amount)
+    (redis_get || redis_set(scrape_syllables_count)).tap do |value|
+      raise ArgumentError.new(self) if value <= 0
     end
-    amount = amount.to_i
-    raise ArgumentError.new(self) if amount <= 0
-    amount.to_i
   end
 
   def scrape_syllables_count

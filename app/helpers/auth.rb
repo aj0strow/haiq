@@ -18,6 +18,12 @@ module Auth
     def sign_out
       session[:user_id] = @current_user = nil
     end
+
+    def authenticate!
+      if current_user.nil?
+        halt 401, { error: 'Not Authorized' }.to_json
+      end
+    end
   end
 
   def self.registered(base)

@@ -10,6 +10,10 @@ module Helpers
   def app
     Sinatra::Application
   end
+
+  def json
+    MultiJson.load(last_response.body)
+  end
 end
 
 RSpec.configure do |config|

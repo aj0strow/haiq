@@ -15,6 +15,9 @@ gem 'redis'
 gem 'hiredis'
 gem 'curb'
 gem 'nokogiri'
+gem 'multi_json'
+gem 'oj'
+gem 'activesupport'
 
 group :test do
   gem 'rspec'
