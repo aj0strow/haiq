@@ -7,7 +7,7 @@ module Database
   end  
 
   def self.migrate
-    system "sequel -m app/migrations #{url}"
+    system "bin/sequel -m app/migrations #{url}"
   end
 
   def self.registered(base)

@@ -20,6 +20,8 @@ namespace :db do
   desc 'migrate postgres database'
   task :migrate do
     require './app/helpers/database'
+    print 'migrating database... '
     Database.migrate
+    puts 'complete!'
   end
 end
