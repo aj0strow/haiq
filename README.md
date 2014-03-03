@@ -1,6 +1,6 @@
 # HaiQ
 
-I didn't think of the idea, just had time to kill during layovers. 
+I didn't think of the idea, just had time to kill during layovers. http://hiq575.herokuapp.com/
 
 ### Install
 
