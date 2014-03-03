@@ -36,4 +36,16 @@ describe Routes do
       expect(json[0]['id']).not_to eq(haiku.id)
     end
   end
+
+  describe 'GET /word' do
+    specify 'returns syllables' do
+      get '/word', w: 'hello'
+      expect(json).to eq('word' => 'hello', 'syllables' => 2)
+    end
+
+    specify 'returns 404 for not found' do
+      get '/word', w: 'yee'
+      expect(last_response.status).to eq(404)
+    end
+  end
 end

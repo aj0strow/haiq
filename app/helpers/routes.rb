@@ -29,7 +29,15 @@ module Routes
     base.helpers Helpers
 
     base.get '/' do
-      mustache :index, current_user: current_user
+      erb :index, current_user: current_user
+    end
+
+    base.get '/recent' do
+      erb :recent
+    end
+
+    base.get '/me' do
+      erb :me
     end
 
     base.post '/haikus', provides: :json do
@@ -42,6 +50,16 @@ module Routes
       haikus = Haiku.reverse_order(:id).limit(12)
       haikus = haikus.where('id < ?', params[:id]) if params[:id]
       json haikus
+    end
+
+    base.get '/word', provides: :json do
+      word = Word.new(params[:w])
+      begin
+        json word: word, syllables: word.syllables 
+      rescue ArgumentError => ex
+        status 404
+        json error: ex.message 
+      end
     end
   end
 end

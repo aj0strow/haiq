@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="haiq">
   <head>
     <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HaiQ</title>
-    <script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
     <script src="/assets/application.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/global.css">
@@ -13,24 +12,15 @@
     <header class="header">
       <div class="brand">HaiQ</div>
       <ul id="menu" class="inline-links">
-        {{# current_user }}
-          <li><a id="recent" href="#">Recent</a></li>
-          <li><a id="me" href="#">Me</a></li>
+        <% if current_user %>
+          <li><a id="recent" href="/#/recent">Recent</a></li>
+          <li><a id="me" href="/#/me">Me</a></li>
           <li><a href="/logout">Logout</a></li>
-        {{/ current_user }}
-        {{^ current_user }}
+        <% else %>
           <li><a href="/auth/twitter">Login with Twitter</a></li>
-        {{/ current_user }}          
+        <% end %>        
       </ul>
     </header>
-    <section id="content" role="main"></section>
-    <script name="haiku" type="x-mustache">
-      <div class="haiku">
-        <h3>{{ user.name }}</h3>
-        <p class="first">{{ first }}</p>
-        <p class="second">{{ second }}</p>
-        <p class="third">{{ third }}</p>
-      </div>
-    </script>
+    <section id="content" role="main" ng-view></section>
   </body>
 </html>

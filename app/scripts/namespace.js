@@ -1,2 +1,0 @@
-window.haiq = {};
-window.JST = {};

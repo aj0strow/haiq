@@ -13,3 +13,6 @@
 
 # Environment
 env.sh
+
+# Redis
+dump.rdb

@@ -11,4 +11,4 @@ require_all 'app/models'
 
 set :logging, false
 set :root, File.dirname(__FILE__)
-set :views, -> { root + '/app/templates' }
+set :views, -> { root + '/app/views' }

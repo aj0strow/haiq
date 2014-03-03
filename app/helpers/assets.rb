@@ -15,13 +15,10 @@ module Assets
       ]
 
       js :application, '/assets/application.js', [
-        '/components/es5-shim/es5-shim.js',
-        '/components/es5-shim/es5-sham.js',
-        '/components/jquery/dist/jquery.js',
-        '/components/flight-standalone/flight.js',
-        '/scripts/namespace.js',
-        '/scripts/menu.js',
-        '/scripts/boot.js'
+        '/components/angular/angular.js',
+        '/components/angular-route/angular-route.js',
+        '/scripts/app.js',
+        '/scripts/syllables.js'
       ]
     end
   end
