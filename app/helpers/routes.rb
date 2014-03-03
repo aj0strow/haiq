@@ -21,7 +21,7 @@ module Routes
     end
 
     def haiku_params
-      { first: params['first'], second: params['second'], third: params['third'] }
+      params.symbolize_keys.slice(:first, :second, :third)
     end
   end
 

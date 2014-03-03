@@ -2,6 +2,10 @@ class Haiku < Sequel::Model
   plugin :timestamps
   many_to_one :user
 
+  def as_json(options = {})
+    values.slice(:id, :first, :second, :third).merge(user: user.as_json)
+  end
+
   def format_lines!
     [ :first, :second, :third ].each do |line|
       self[line] = self[line].strip.gsub(/\s+/, ' ')
@@ -18,7 +22,7 @@ class Haiku < Sequel::Model
   end
 
   def validate_line(line, syllables)
-    words = self[line].split.map(& Word.method(:new))
+    words = self[line].gsub(/[^\w\s]/, '').split(/[\s\-\_\/]+/).map(& Word.method(:new))
     unless syllables == words.map(&:syllables).reduce(:+)
       errors.add(line, "#{line} line must be exactly #{syllables}")
     end

@@ -11,9 +11,8 @@
   function recent($scope, $http) {
     $scope.haikus = [];
 
-    $http.get('/haikus/paginate').success(function (data) {
-      console.log(data);
-      $scope.haikus.concat(data);
+    $http.get('/haikus/paginate').then(function (result) {
+      $scope.haikus.push.apply($scope.haikus, result.data);
     });
   }
 
@@ -24,6 +23,19 @@
     $scope.second = '';
     $scope.third = '';
     $scope.haikus = [];
+
+    $scope.create = function () {
+      var haiku = { first: $scope.first, second: $scope.second, third: $scope.third };
+      function oncreate(response) {
+        $scope.haikus.push(response.data);
+        $scope.first = $scope.second = $scope.third = '';
+        $scope.newHaiku.$setPristine();
+      }
+      function onfail(response) {
+        console.log(response);
+      }
+      $http.post('/haikus', haiku).then(oncreate, onfail);
+    }
   }
 
   haiq.controller('meController', [ '$scope', '$http', me ]);
