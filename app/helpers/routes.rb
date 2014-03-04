@@ -37,13 +37,18 @@ module Routes
     end
 
     base.get '/me' do
-      erb :me
+      erb(:me) + erb(:recent)
     end
 
     base.post '/haikus', provides: :json do
       authenticate!
       haiku = Haiku.new(haiku_params.merge(user: current_user))
       persist haiku
+    end
+
+    base.get '/users/:user_id/haikus' do
+      haikus = Haiku.where(user_id: params[:user_id])
+      json haikus.reverse_order(:id)
     end
 
     base.get '/haikus/paginate/?:id?', provides: :json do

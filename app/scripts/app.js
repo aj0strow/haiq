@@ -1,5 +1,5 @@
 (function () {
-  var haiq = angular.module('haiq', [ 'ngRoute', 'syllablesCount' ]);
+  var haiq = angular.module('haiq', [ 'ngRoute', 'syllablesCount', 'infinite-scroll' ]);
 
   haiq.config([ '$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -10,10 +10,22 @@
 
   function recent($scope, $http) {
     $scope.haikus = [];
+  
+    $scope.url = function (haiku) {
+      var url = '/haikus/paginate';
+      if (haiku && haiku.id) url += '/' + haiku.id;
+      return url;
+    };
 
-    $http.get('/haikus/paginate').then(function (result) {
-      $scope.haikus.push.apply($scope.haikus, result.data);
-    });
+    $scope.fetch = function () {
+      var haikus = $scope.haikus;
+      var url = $scope.url(haikus[haikus.length - 1]);
+      $http.get(url).then(function (result) {
+        haikus.push.apply(haikus, result.data);
+      });
+    };
+
+    $scope.fetch();
   }
 
   haiq.controller('recentController', [ '$scope', '$http', recent ]);
@@ -36,6 +48,8 @@
       }
       $http.post('/haikus', haiku).then(oncreate, onfail);
     }
+
+    $http.get('')
   }
 
   haiq.controller('meController', [ '$scope', '$http', me ]);

@@ -18,7 +18,8 @@ module Assets
         '/components/angular/angular.js',
         '/components/angular-route/angular-route.js',
         '/scripts/app.js',
-        '/scripts/syllables.js'
+        '/scripts/syllables.js',
+        '/scripts/scroll.js'
       ]
     end
   end

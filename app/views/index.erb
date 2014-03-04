@@ -7,6 +7,7 @@
     <script src="/assets/application.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Allura' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/global.css">
+    <meta name="user" content="<%= current_user.try(:to_json) %>">
   </head>
   <body>
     <header class="header">
